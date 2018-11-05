@@ -1,0 +1,47 @@
+{
+  "name": "reason-react-ssr-starter",
+  "version": "1.0.0",
+  "keywords": [
+    "BuckleScript",
+    "ReasonReact",
+    "Reason",
+    "ReasonML"
+  ],
+  "author": "amogower",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^2.1.0",
+    "concurrently": "^3.6.1",
+    "css-loader": "^1.0.0",
+    "husky": "^1.1.3",
+    "nodemon": "^1.18.3",
+    "rimraf": "^2.6.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "bs-express": "^0.4.0",
+    "express": "^4.16.2",
+    "ignore-styles": "^5.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "reason-react": "^0.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test"
+    }
+  },
+  "scripts": {
+    "build:prod": "bsb -make-world && webpack --mode=production",
+    "build:dev": "bsb -make-world && webpack --mode=development",
+    "start": "bsb -make-world -w",
+    "clean": "concurrently \"yarn clean:bsb\" \"yarn clean:dist\"",
+    "clean:bsb": "bsb -clean-world",
+    "clean:dist": "./node_modules/rimraf/bin.js dist",
+    "server": "node src/server.bs.js",
+    "server:watch": "concurrently \"./node_modules/nodemon/bin/nodemon.js src/server.bs.js\" \"webpack --mode=development --watch\"",
+    "dev": "yarn clean && yarn build:dev && concurrently \"yarn start\" \"yarn server:watch\"",
+    "test": "echo \"No test script defined\" && exit 1"
+  }
+}

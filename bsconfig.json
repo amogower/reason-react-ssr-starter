@@ -1,0 +1,19 @@
+{
+  "name": "reason-react-ssr-starter",
+  "version": "1.0.0",
+  "sources": [
+    "src",
+    "src/components"
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+    "bs-express",
+    "reason-react"
+  ],
+  "refmt": 3,
+  "reason": {"react-jsx": 2}
+}
